@@ -12,7 +12,12 @@ export interface EventCardProps {
     location: string;
     description: string;
     attendeeCount: number;
-    attendees?: any[];
+          attendees?: {
+        _id: string;
+        name: string;
+        email: string;
+        photoURL?: string;
+      }[],
     joined?: boolean;
   };
   onJoin?: (eventId: string) => void;
@@ -41,7 +46,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, onJoin, joining, extraButt
               {attendees.slice(0, 5).map((att, idx) => (
                 <Image
                   key={att._id || att.email || idx}
-                  src={att.photoURL || att.photoUrl || '/favicon.svg'}
+                  src={att.photoURL || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}
                   alt={att.name || att.email || 'Attendee'}
                   width={28}
                   height={28}

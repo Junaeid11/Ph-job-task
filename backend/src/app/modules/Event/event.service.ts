@@ -98,6 +98,7 @@ const getAllEvents = async (filters: IEventFilters = {}): Promise<IEvent[]> => {
   // Execute query with population
   const events = await query.modelQuery
     .populate('userId', 'name email photoURL')
+    .populate('attendees', 'name email photoURL')
     .lean() as unknown as IEvent[];
 
   return events;

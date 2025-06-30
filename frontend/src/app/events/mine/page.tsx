@@ -7,7 +7,7 @@ import EventEditModal from "@/components/EventEditModal";
 import { apiFetch } from "@/utils/api";
 
 const deleteEvent = async ({ eventId, token }: { eventId: string; token: string }) => {
-  const res = await fetch(`/api/events/${eventId}`, {
+  const res = await apiFetch(`/events/${eventId}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -17,7 +17,7 @@ const deleteEvent = async ({ eventId, token }: { eventId: string; token: string 
 };
 
 const updateEvent = async ({ eventId, token, updateData }: { eventId: string; token: string; updateData: any }) => {
-  const res = await fetch(`/api/events/${eventId}`, {
+  const res = await apiFetch(`/events/${eventId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -93,15 +93,14 @@ export default function MyEventsPage() {
     setEditLoading(true);
     setEditError("");
     try {
-      await updateEvent({ eventId: editEvent._id, token, updateData: data });
+      const updatedEventData = await updateEvent({ eventId: editEvent._id, token, updateData: data });
       setEditOpen(false);
       setEditEvent(null);
-      // Refetch events after update
-      const res = await fetch("/api/events/my/events", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const updatedData = await res.json();
-      setEvents(updatedData.data || []);
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event._id === editEvent._id ? updatedEventData : event
+        )
+      );
     } catch (err: any) {
       setEditError(err.message || "Failed to update event");
     } finally {
