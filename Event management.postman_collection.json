@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "aa77e950-33e6-48cc-80d0-45aaeeb56eeb",
+		"name": "Event management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46271618",
+		"_collection_link": "https://fadf22.postman.co/workspace/Ph-task~68176062-d8e9-447b-a6d1-3fd4d1c5af0c/collection/46271618-aa77e950-33e6-48cc-80d0-45aaeeb56eeb?action=share&source=collection_link&creator=46271618"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Bob Smith\",\r\n  \"email\": \"bob@example.com\",\r\n  \"password\": \"123456\",\r\n  \"photoURL\": \"https://example.com/bob.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{User token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/auth/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{User token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eventTitle\": \"Tech Conference 2023\",\r\n  \"dateTime\": \"2023-12-25T10:00:00.000Z\",\r\n  \"location\": \"Convention Center, Dhaka\",\r\n  \"description\": \"Annual technology conference featuring the latest innovations in software development, AI, and cloud computing.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my event",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{User token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eventTitle\": \"manysh Conference 2023\",\r\n  \"dateTime\": \"2023-12-25T10:00:00.000Z\",\r\n  \"location\": \"Convention Center, Dhaka\",\r\n  \"description\": \"Annual technology conference featuring the latest innovations in software development, AI, and cloud computing.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/events/68618b6283cda71ce48919b0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events",
+								"68618b6283cda71ce48919b0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{User token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/events/68618b6283cda71ce48919b0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events",
+								"68618b6283cda71ce48919b0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my event",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{User token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/events/my/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events",
+								"my",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Join Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user 2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/events/68618dfc10ccc24baa607fdc/join",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events",
+								"68618dfc10ccc24baa607fdc",
+								"join"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "leave Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user 2}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/events/68618dfc10ccc24baa607fdc/leave",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events",
+								"68618dfc10ccc24baa607fdc",
+								"leave"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get All event",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"123456\",\r\n  \"photoURL\": \"https://example.com/photo.jpg\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/events?search=data",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "data"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

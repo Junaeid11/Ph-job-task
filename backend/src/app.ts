@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'; 
 
 const app: Application = express()
-app.use(cors({origin: 'http://localhost:3000', credentials: true} ))
+app.use(cors({origin: 'https://eventify-ochre.vercel.app', credentials: true} ))
 
 app.use(express.json())
 app.use(cookieParser())
