@@ -107,6 +107,19 @@ export default function Login() {
             </div>
           </div>
 
+          {/* Default Value Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setEmail('phero@example.com');
+              setPassword('123456');
+            }}
+            disabled={loading}
+            className="w-full mb-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-2 rounded-xl transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow"
+          >
+            Use Demo Credentials
+          </button>
+
           {/* Error Message */}
           {error && (
             <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-center text-sm">
